@@ -10,4 +10,16 @@ while 1:
      data = s.recv(1024).decode('utf-8')
      print('Server: ' + data)
      if(data == "cmdclose"):
-          break
+        break
+     elif(data == "clientfile"):
+        s.sendall("ready".encode('utf-8'))
+        f = open('clients.txt','wb')
+        l = s.recv(1024)
+        while(l):
+                if(l == "done...transfer"):
+                     break
+                else:
+                     f.write(l)
+                     l = s.recv(1024)
+        f.close()
+        s.sendall("Done receiving".encode('utf-8'))
