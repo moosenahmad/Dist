@@ -11,9 +11,7 @@ print('Server: ' + data)
 while 1:
      data = s.recv(1024).decode('utf-8')
      print('Server: ' + data)
-     s.sendall("Received".encode('utf-8'))
      if(data == "cmdclose"):
-        s.sendall("Good bye.".encode('utf-8'))
         break
      elif(data == "clientfile"):
         s.sendall("ready".encode('utf-8'))
@@ -26,4 +24,6 @@ while 1:
                      f.write(l)
                      l = s.recv(1024)
         f.close()
-        s.sendall("Done receiving".encode('utf-8'))
+	s.sendall("Done receiving".encode('utf-8'))
+     else:
+	s.sendall("Received".encode('utf-8'))
