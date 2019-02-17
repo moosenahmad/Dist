@@ -1,6 +1,6 @@
 import socket
 
-ip = input("Enter server ip: ")
+ip = raw_input("Enter server ip: ")
 host = ip
 port = 8080
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
