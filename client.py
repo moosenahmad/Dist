@@ -6,10 +6,14 @@ port = 8080
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((host,port))
 print("You are connected to the server\n")
+data = s.recv(1024).decode('utf-8')
+print('Server: ' + data)
 while 1:
      data = s.recv(1024).decode('utf-8')
      print('Server: ' + data)
+     s.sendall("Received".encode('utf-8'))
      if(data == "cmdclose"):
+        s.sendall("Good bye.".encode('utf-8'))
         break
      elif(data == "clientfile"):
         s.sendall("ready".encode('utf-8'))
